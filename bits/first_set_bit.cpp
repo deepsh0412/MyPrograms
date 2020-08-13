@@ -30,19 +30,15 @@ Testcase 1: Binary representation of the 18 is 010010, the first set bit from th
 
 //Algorithm using 2's compliment of the number
 #include<iostream>
+#include<cmath>
 using namespace std;
 
 int first_set_bit(unsigned int test_number)
 {
-        int pos = 0;
-        unsigned int twos_compliment_test_number = ~test_number + 1;
-        unsigned int logical_and_number = test_number & twos_compliment_test_number;
-        while(logical_and_number)
-        {
-                pos++;
-                logical_and_number >>= 1;
-        }   
-        return pos;
+	if(test_number == 0)
+		return 0;
+	unsigned int pos = test_number & -test_number;
+        return log2(pos)+1;
 }
 
 int main()
